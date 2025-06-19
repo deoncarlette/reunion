@@ -1,0 +1,828 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Judson Reunion - "05 We Live"</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #800101;
+            --secondary: #404040;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8f8f8;
+            color: var(--secondary);
+        }
+        
+        .primary-bg {
+            background-color: var(--primary);
+        }
+        
+        .secondary-bg {
+            background-color: var(--secondary);
+        }
+        
+        .primary-text {
+            color: var(--primary);
+        }
+        
+        .secondary-text {
+            color: var(--secondary);
+        }
+        
+        .header-gradient {
+            background: linear-gradient(135deg, var(--primary) 0%, #b30000 100%);
+        }
+        
+        .event-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tab-active {
+            border-bottom: 3px solid var(--primary);
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .rocket-icon {
+            animation: rocket-float 3s ease-in-out infinite;
+        }
+        
+        @keyframes rocket-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .countdown-item {
+            background: linear-gradient(135deg, var(--primary) 0%, #b30000 100%);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6a0101;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+<body>
+    <!-- Hero Section -->
+    <header class="header-gradient text-white">
+        <div class="container mx-auto px-4 py-16 md:py-24 flex flex-col items-center text-center">
+            <!-- <div class="rocket-icon mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 16a4 4 0 0 0 4-4V4a4 4 0 1 0-8 0v8a4 4 0 0 0 4 4zM4 4a4 4 0 0 1 4-4v8H4V4zm1 7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H5z"></path>
+                </svg>
+            </div> -->
+            <h1 class="text-4xl md:text-6xl font-bold mb-2">JUDSON REUNION</h1>
+            <h2 class="text-2xl md:text-4xl font-bold mb-6">"05 We Live"</h2>
+            <p class="text-xl mb-8">JULY 18-20, 2025</p>
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <div class="countdown-item w-20 h-20 rounded-lg flex flex-col items-center justify-center">
+                    <span id="days" class="text-2xl font-bold">28</span>
+                    <span class="text-xs">Days</span>
+                </div>
+                <div class="countdown-item w-20 h-20 rounded-lg flex flex-col items-center justify-center">
+                    <span id="hours" class="text-2xl font-bold">17</span>
+                    <span class="text-xs">Hours</span>
+                </div>
+                <div class="countdown-item w-20 h-20 rounded-lg flex flex-col items-center justify-center">
+                    <span id="minutes" class="text-2xl font-bold">39</span>
+                    <span class="text-xs">Minutes</span>
+                </div>
+                <div class="countdown-item w-20 h-20 rounded-lg flex flex-col items-center justify-center">
+                    <span id="seconds" class="text-2xl font-bold">10</span>
+                    <span class="text-xs">Seconds</span>
+                </div>
+            </div>
+            <p class="text-lg md:text-xl font-semibold">#RocketPride</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap items-center justify-between py-4">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold primary-text">Judson '05</span>
+                </div>
+                <div class="block lg:hidden">
+                    <button id="nav-toggle" class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-500 hover:text-primary hover:border-primary">
+                        <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <title>Menu</title>
+                            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div id="nav-content" class="hidden w-full lg:flex lg:items-center lg:w-auto">
+                    <ul class="lg:flex flex-1 items-center mt-3 lg:mt-0">
+                        <li class="mr-6"><a href="#schedule" class="nav-link block py-2 hover:text-primary">Schedule</a></li>
+                        <li class="mr-6"><a href="#friday" class="nav-link block py-2 hover:text-primary">Friday</a></li>
+                        <li class="mr-6"><a href="#saturday" class="nav-link block py-2 hover:text-primary">Saturday</a></li>
+                        <li class="mr-6"><a href="#sunday" class="nav-link block py-2 hover:text-primary">Sunday</a></li>
+                        <li><a href="#info" class="nav-link block py-2 hover:text-primary">Travel Info</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Schedule Overview -->
+        <section id="schedule" class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold primary-text mb-2">OFFICIAL WEEKEND SCHEDULE</h2>
+                <p class="text-lg">Join us for an unforgettable weekend celebrating 20 years!</p>
+            </div>
+            
+            <div class="flex flex-wrap -mx-4">
+                <!-- Friday -->
+                <div class="w-full md:w-1/3 px-4 mb-8">
+                    <div class="event-card bg-white rounded-lg shadow-lg overflow-hidden h-full">
+                        <div class="primary-bg text-white p-4 text-center">
+                            <h3 class="text-xl font-bold">FRIDAY, JULY 18</h3>
+                            <p>"Friday Night Lights"</p>
+                        </div>
+                        <div class="p-6">
+                            <p class="font-semibold mb-2">Casual Kickoff @ Skybar</p>
+                            <p class="mb-4">A relaxed evening to reconnect with classmates</p>
+                            <a href="#friday" class="inline-block primary-bg text-white font-bold py-2 px-4 rounded hover:bg-opacity-90 transition">See Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Saturday -->
+                <div class="w-full md:w-1/3 px-4 mb-8">
+                    <div class="event-card bg-white rounded-lg shadow-lg overflow-hidden h-full">
+                        <div class="primary-bg text-white p-4 text-center">
+                            <h3 class="text-xl font-bold">SATURDAY, JULY 19</h3>
+                            <p>"Main Event"</p>
+                        </div>
+                        <div class="p-6">
+                            <p class="font-semibold mb-2">Backstage Pass &amp; Rodeo @ Blue Bonnet Palace</p>
+                            <p class="mb-4">The official reunion celebration with multiple venues</p>
+                            <a href="#saturday" class="inline-block primary-bg text-white font-bold py-2 px-4 rounded hover:bg-opacity-90 transition">See Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sunday -->
+                <div class="w-full md:w-1/3 px-4 mb-8">
+                    <div class="event-card bg-white rounded-lg shadow-lg overflow-hidden h-full">
+                        <div class="primary-bg text-white p-4 text-center">
+                            <h3 class="text-xl font-bold">SUNDAY, JULY 20</h3>
+                            <p>"Recess"</p>
+                        </div>
+                        <div class="p-6">
+                            <p class="font-semibold mb-2">Family Event @ Pickrell Park</p>
+                            <p class="mb-4">Family-friendly activities and special guest appearance</p>
+                            <a href="#sunday" class="inline-block primary-bg text-white font-bold py-2 px-4 rounded hover:bg-opacity-90 transition">See Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Friday Details -->
+        <section id="friday" class="mb-16">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="primary-bg text-white p-6">
+                    <h2 class="text-3xl font-bold">Friday, July 18th</h2>
+                    <p class="text-xl">"Friday Night Lights" - '05 Casual Kickoff</p>
+                </div>
+                <div class="p-6">
+                    <div class="flex flex-wrap">
+                        <div class="w-full lg:w-1/2 pr-0 lg:pr-8">
+                            <div class="mb-6">
+                                <h3 class="text-xl font-bold mb-2 primary-text">Event Details</h3>
+                                <ul class="space-y-3">
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 mr-2 mt-0.5 primary-text" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span><strong>Time:</strong> 7 PM (Kids until 10) to whenever</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 mr-2 mt-0.5 primary-text" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span><strong>Location:</strong> Skybar San Antonio - 214 E Houston St, San Antonio, TX 78205</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 mr-2 mt-0.5 primary-text" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span><strong>Dress code:</strong> Casual and comfortable</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 mr-2 mt-0.5 primary-text" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span><strong>Entry:</strong> No entry fee - just show up and link up!</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 primary-text">About This Event</h3>
+                                <p class="mb-4">This is a very casual meet up - perfect for out-of-towners to catch up and enjoy San Antonio. No Host or events - build your own connections and meet!</p>
+                                
+                                <h4 class="font-bold mb-2">Fun spots nearby:</h4>
+                                <ul class="list-disc pl-5 space-y-1">
+                                    <li>Bar House</li>
+                                    <li>Bentleys</li>
+                                    <li>Social Spot</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="w-full lg:w-1/2 mt-6 lg:mt-0">
+                            <div class="bg-gray-100 rounded-lg p-6 h-full">
+                                <div class="flex justify-center items-center h-full">
+                                    <svg class="w-full max-w-md" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="50" y="50" width="400" height="200" rx="10" fill="#800101"></rect>
+                                        <rect x="70" y="70" width="360" height="160" rx="5" fill="#fff"></rect>
+                                        <text x="250" y="130" font-family="Montserrat" font-size="24" font-weight="bold" text-anchor="middle" fill="#800101">SKYBAR SAN ANTONIO</text>
+                                        <text x="250" y="160" font-family="Montserrat" font-size="16" text-anchor="middle" fill="#404040">Friday Night Lights</text>
+                                        <text x="250" y="190" font-family="Montserrat" font-size="14" text-anchor="middle" fill="#404040">July 18, 2025 • 7PM</text>
+                                        <circle cx="120" cy="100" r="15" fill="#800101"></circle>
+                                        <circle cx="380" cy="100" r="15" fill="#800101"></circle>
+                                        <path d="M120 220 Q 250 250 380 220" stroke="#800101" stroke-width="3" fill="transparent"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <button id="openMapFriday" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center transition">
+                            <svg class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>View Map Location</span>
+                        </button>
+                        
+                        <div id="mapFriday" class="hidden mt-4">
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <div class="aspect-w-16 aspect-h-9">
+                                    <div class="w-full h-64 bg-gray-300 rounded-lg flex items-center justify-center">
+                                        <div class="text-center">
+                                            <svg class="h-12 w-12 mx-auto text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            </svg>
+                                            <p class="mt-2">Skybar San Antonio</p>
+                                            <p class="text-sm text-gray-500">214 E Houston St, San Antonio, TX 78205</p>
+                                            <a href="https://maps.google.com/?q=Skybar+San+Antonio+214+E+Houston+St+San+Antonio+TX+78205" target="_blank" class="mt-2 inline-block text-blue-600 hover:underline">Open in Google Maps</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Saturday Details -->
+        <section id="saturday" class="mb-16">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="primary-bg text-white p-6">
+                    <h2 class="text-3xl font-bold">Saturday, July 19th</h2>
+                    <p class="text-xl">The Main Event - Multiple Venues</p>
+                </div>
+                
+                <div class="p-6">
+                    <div class="flex flex-wrap -mx-4">
+                        <!-- Backstage Pass -->
+                        <div class="w-full lg:w-1/2 px-4 mb-8">
+                            <div class="border border-gray-200 rounded-lg overflow-hidden h-full">
+                                <div class="bg-gradient-to-r from-primary to-red-700 text-white p-4">
+                                    <h3 class="text-xl font-bold">Backstage Pass: '05 Reunion</h3>
+                                    <p>BLUE BONNET PALACE - SELMA, TX</p>
+                                </div>
+                                <div class="p-4">
+                                    <ul class="space-y-3">
+                                        <li class="flex items-start">
+                                            <svg class="h-5 w-5 mr-2 mt-0.5 primary-text" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                            </svg>
+                                            <span><strong>Time:</strong> 8 PM to Midnight</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <svg class="h-5 w-5 mr-2 mt-0.5 primary-text" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                                            </svg>
+                                            <span><strong>Area:</strong> Outside Area - RAP &amp; RNB</span>
+                                        </li>
+                                    </ul>
+                                    
+                                    <div class="mt-4">
+                                        <h4 class="font-bold mb-2">Schedule:</h4>
+                                        <ul class="space-y-2">
+                                            <li class="flex">
+                                                <span class="font-semibold w-24">8-9 PM:</span>
+                                                <span>Red Carpet Arrivals</span>
+                                            </li>
+                                            <li class="flex">
+                                                <span class="font-semibold w-24">9-9:30 PM:</span>
+                                                <span>Awards</span>
+                                            </li>
+                                            <li class="flex">
+                                                <span class="font-semibold w-24">9:30-11 PM:</span>
+                                                <span>VERSUZ BATTLE</span>
+                                            </li>
+                                            <li class="flex">
+                                                <span class="font-semibold w-24">Until 12 AM:</span>
+                                                <span>DJs spin til midnight</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Rodeo -->
+                        <div class="w-full lg:w-1/2 px-4 mb-8">
+                            <div class="border border-gray-200 rounded-lg overflow-hidden h-full">
+                                <div class="bg-gradient-to-r from-primary to-red-700 text-white p-4">
+                                    <h3 class="text-xl font-bold">Rodeo: '05 Reunion</h3>
+                                    <p>BLUE BONNET PALACE - SELMA, TX</p>
+                                </div>
+                                <div class="p-4">
+                                    <ul class="space-y-3">
+                                        <li class="flex items-start">
+                                            <svg class="h-5 w-5 mr-2 mt-0.5 primary-text" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                            </svg>
+                                            <span><strong>Time:</strong> 8 PM to 3 AM</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <svg class="h-5 w-5 mr-2 mt-0.5 primary-text" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                                            </svg>
+                                            <span><strong>Area:</strong> Inside Area - COUNTRY AND POP</span>
+                                        </li>
+                                    </ul>
+                                    
+                                    <div class="mt-4">
+                                        <h4 class="font-bold mb-2">Highlight:</h4>
+                                        <p>Boots on the Ground dance @ midnight</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- After Party -->
+                        <div class="w-full px-4">
+                            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                <div class="bg-gradient-to-r from-gray-700 to-gray-900 text-white p-4">
+                                    <h3 class="text-xl font-bold">Detention After Dark</h3>
+                                    <p>The Palace Men's Club - San Antonio</p>
+                                </div>
+                                <div class="p-4">
+                                    <ul class="space-y-3">
+                                        <li class="flex items-start">
+                                            <svg class="h-5 w-5 mr-2 mt-0.5 primary-text" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                            </svg>
+                                            <span><strong>Time:</strong> 12 AM - Demon Time</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <button id="openMapSaturday" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center transition">
+                            <svg class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>View Map Location</span>
+                        </button>
+                        
+                        <div id="mapSaturday" class="hidden mt-4">
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <div class="aspect-w-16 aspect-h-9">
+                                    <div class="w-full h-64 bg-gray-300 rounded-lg flex items-center justify-center">
+                                        <div class="text-center">
+                                            <svg class="h-12 w-12 mx-auto text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            </svg>
+                                            <p class="mt-2">Blue Bonnet Palace</p>
+                                            <p class="text-sm text-gray-500">Selma, TX</p>
+                                            <a href="https://maps.google.com/?q=Blue+Bonnet+Palace+Selma+TX" target="_blank" class="mt-2 inline-block text-blue-600 hover:underline">Open in Google Maps</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sunday Details -->
+        <section id="sunday" class="mb-16">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="primary-bg text-white p-6">
+                    <h2 class="text-3xl font-bold">Sunday, July 20th</h2>
+                    <p class="text-xl">"Recess" - Private Family Event</p>
+                </div>
+                
+                <div class="p-6">
+                    <div class="flex flex-wrap">
+                        <div class="w-full lg:w-1/2 pr-0 lg:pr-8">
+                            <div class="mb-6">
+                                <h3 class="text-xl font-bold mb-2 primary-text">Event Details</h3>
+                                <ul class="space-y-3">
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 mr-2 mt-0.5 primary-text" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span><strong>Time:</strong> 1 PM to 8 PM</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 mr-2 mt-0.5 primary-text" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span><strong>Location:</strong> Pickrell Park - large pavilion - 703 Oak St. Schertz TX 78154</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 mr-2 mt-0.5 primary-text" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span><strong>Special Note:</strong> SPECIAL GUEST APPEARANCE</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 primary-text">Activities</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <h4 class="font-bold mb-2">Sports &amp; Games</h4>
+                                        <ul class="list-disc pl-5 space-y-1">
+                                            <li>Kickball Tournament: Hosted by Amanda Gonzales</li>
+                                            <li>Basketball Tournament: Hosted by Fly Guy the G</li>
+                                            <li>Yard Games</li>
+                                            <li>Moon Bounces</li>
+                                            <li>Pinatas</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div>
+                                        <h4 class="font-bold mb-2">Food &amp; Entertainment</h4>
+                                        <ul class="list-disc pl-5 space-y-1">
+                                            <li>Margarita Truck</li>
+                                            <li>Ice Cream Truck</li>
+                                            <li>Baked Potato Line</li>
+                                            <li>DJ playing Music</li>
+                                            <li>Pool $3 entry (not associated with event)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="w-full lg:w-1/2 mt-6 lg:mt-0">
+                            <div class="bg-gray-100 rounded-lg p-6 h-full">
+                                <div class="flex justify-center items-center h-full">
+                                    <svg class="w-full max-w-md" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+                                        <!-- Park background -->
+                                        <rect x="50" y="50" width="400" height="200" rx="10" fill="#a3e635"></rect>
+                                        
+                                        <!-- Pavilion -->
+                                        <rect x="150" y="80" width="200" height="100" fill="#854d0e"></rect>
+                                        <polygon points="150,80 250,40 350,80" fill="#854d0e"></polygon>
+                                        
+                                        <!-- Trees -->
+                                        <circle cx="100" cy="120" r="30" fill="#16a34a"></circle>
+                                        <rect x="95" y="150" width="10" height="30" fill="#7c2d12"></rect>
+                                        
+                                        <circle cx="400" cy="120" r="30" fill="#16a34a"></circle>
+                                        <rect x="395" y="150" width="10" height="30" fill="#7c2d12"></rect>
+                                        
+                                        <!-- Basketball court -->
+                                        <rect x="70" y="200" width="100" height="40" fill="#cbd5e1"></rect>
+                                        <circle cx="120" cy="220" r="10" fill="#800101" stroke="#000" stroke-width="1"></circle>
+                                        
+                                        <!-- Kickball field -->
+                                        <circle cx="350" cy="220" r="40" fill="#fde68a"></circle>
+                                        
+                                        <!-- Text -->
+                                        <text x="250" y="230" font-family="Montserrat" font-size="16" font-weight="bold" text-anchor="middle" fill="#800101">PICKRELL PARK</text>
+                                        <text x="250" y="250" font-family="Montserrat" font-size="14" text-anchor="middle" fill="#404040">Sunday Family Fun Day</text>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <button id="openMapSunday" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center transition">
+                            <svg class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>View Map Location</span>
+                        </button>
+                        
+                        <div id="mapSunday" class="hidden mt-4">
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <div class="aspect-w-16 aspect-h-9">
+                                    <div class="w-full h-64 bg-gray-300 rounded-lg flex items-center justify-center">
+                                        <div class="text-center">
+                                            <svg class="h-12 w-12 mx-auto text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            </svg>
+                                            <p class="mt-2">Pickrell Park</p>
+                                            <p class="text-sm text-gray-500">703 Oak St. Schertz TX 78154</p>
+                                            <a href="https://maps.google.com/?q=Pickrell+Park+703+Oak+St+Schertz+TX+78154" target="_blank" class="mt-2 inline-block text-blue-600 hover:underline">Open in Google Maps</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Travel Info -->
+        <section id="info" class="mb-16">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="primary-bg text-white p-6">
+                    <h2 class="text-3xl font-bold">Information for Out-of-Towners</h2>
+                    <p class="text-xl">Where to Stay &amp; What to Do</p>
+                </div>
+                
+                <div class="p-6">
+                    <!-- Tabs -->
+                    <div class="border-b border-gray-200 mb-6">
+                        <ul class="flex flex-wrap -mb-px" id="infoTabs">
+                            <li class="mr-2">
+                                <button class="inline-block p-4 tab-active" data-tab="hotels">Hotels</button>
+                            </li>
+                            <li class="mr-2">
+                                <button class="inline-block p-4" data-tab="food">Food</button>
+                            </li>
+                            <li>
+                                <button class="inline-block p-4" data-tab="attractions">Attractions</button>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Tab Content -->
+                    <div id="tabContent">
+                        <!-- Hotels Tab -->
+                        <div id="hotels" class="tab-content">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div>
+                                    <h3 class="text-xl font-bold mb-3 primary-text">Affordable (but nice!)</h3>
+                                    <p class="text-sm text-gray-500 mb-2">Downtown San Antonio</p>
+                                    <ul class="space-y-2">
+                                        <li>La Quinta Inn</li>
+                                        <li>Red Roof Inn</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="text-xl font-bold mb-3 primary-text">Near Bluebonnet Palace</h3>
+                                    <p class="text-sm text-gray-500 mb-2">North East San Antonio Area</p>
+                                    <ul class="space-y-2">
+                                        <li>Candlewood Suites - Schertz</li>
+                                        <li>Hampton Inn &amp; Suites - Schertz</li>
+                                        <li>Staybridge Suites - Schertz</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="text-xl font-bold mb-3 primary-text">Upscale</h3>
+                                    <p class="text-sm text-gray-500 mb-2">Downtown San Antonio</p>
+                                    <ul class="space-y-2">
+                                        <li>Hotel Emma</li>
+                                        <li>The Thompson</li>
+                                        <li>St. Anthony's</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Food Tab -->
+                        <div id="food" class="tab-content hidden">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <h3 class="text-xl font-bold mb-3 primary-text">Local Favorites</h3>
+                                    <ul class="space-y-2">
+                                        <li><strong>Erick's Tacos</strong> - Cibolo and Nacogdoches locations (Authentic Mexican Tacos)</li>
+                                        <li><strong>Magnolia Pancake Haus</strong></li>
+                                        <li><strong>Rudy's BBQ</strong></li>
+                                        <li><strong>Chris Madrid's</strong> (Burgers)</li>
+                                        <li><strong>Blanco Cafe</strong> (Mexican)</li>
+                                        <li><strong>Bill Miller BBQ</strong> (cheap &amp; local)</li>
+                                        <li><strong>Las Palapas</strong> (Cheap &amp; Local)</li>
+                                        <li><strong>Thai Chef</strong> (Thai and Sushi- NE side)</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="text-xl font-bold mb-3 primary-text">Upscale &amp; Specialty</h3>
+                                    <ul class="space-y-2">
+                                        <li><strong>Mr. Crabby's</strong> (Seafood boil)</li>
+                                        <li><strong>Box St. Social</strong> (Brunch)</li>
+                                        <li><strong>Blush</strong> (Brunch)</li>
+                                        <li><strong>Moon's Daughter</strong> (Rooftop views San Antonio)</li>
+                                        <li><strong>Best Quality Daughter</strong> (Upscale Asian fusion)</li>
+                                        <li><strong>Southerleigh</strong></li>
+                                        <li><strong>Pappadeaux</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Attractions Tab -->
+                        <div id="attractions" class="tab-content hidden">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div>
+                                    <h3 class="text-xl font-bold mb-3 primary-text">Must-See</h3>
+                                    <ul class="space-y-2">
+                                        <li>The Pearl Brewery</li>
+                                        <li>Alamo</li>
+                                        <li>Riverwalk</li>
+                                        <li>Japanese Tea Garden</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="text-xl font-bold mb-3 primary-text">Family Fun</h3>
+                                    <ul class="space-y-2">
+                                        <li>Schilitterbahn</li>
+                                        <li>Six Flags</li>
+                                        <li>Sea World</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="text-xl font-bold mb-3 primary-text">Local Culture</h3>
+                                    <ul class="space-y-2">
+                                        <li>Gruene Hall</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="secondary-bg text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-2xl font-bold">Judson Reunion</h2>
+                    <p>"05 We Live" - July 18-20, 2025</p>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <p class="mb-2">#RocketPride</p>
+                    <div class="flex justify-center md:justify-end space-x-4">
+                        <a href="#" class="hover:text-gray-300 transition">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="hover:text-gray-300 transition">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const reunionDate = new Date('July 18, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = reunionDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Mobile Navigation Toggle
+        document.getElementById('nav-toggle').addEventListener('click', function() {
+            const navContent = document.getElementById('nav-content');
+            navContent.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('nav-content').classList.add('hidden');
+                }
+            });
+        });
+        
+        // Map toggle buttons
+        document.getElementById('openMapFriday').addEventListener('click', function() {
+            const mapElement = document.getElementById('mapFriday');
+            mapElement.classList.toggle('hidden');
+        });
+        
+        document.getElementById('openMapSaturday').addEventListener('click', function() {
+            const mapElement = document.getElementById('mapSaturday');
+            mapElement.classList.toggle('hidden');
+        });
+        
+        document.getElementById('openMapSunday').addEventListener('click', function() {
+            const mapElement = document.getElementById('mapSunday');
+            mapElement.classList.toggle('hidden');
+        });
+        
+        // Info tabs
+        const tabButtons = document.querySelectorAll('#infoTabs button');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                
+                // Remove active class from all buttons and hide all contents
+                tabButtons.forEach(btn => btn.classList.remove('tab-active'));
+                tabContents.forEach(content => content.classList.add('hidden'));
+                
+                // Add active class to clicked button and show corresponding content
+                button.classList.add('tab-active');
+                document.getElementById(tabId).classList.remove('hidden');
+            });
+        });
+    </script>
+</body></html>
